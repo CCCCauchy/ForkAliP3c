@@ -42,10 +42,9 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
 #### 关闭实时检测  
 在某些情况下，我们不希望对代码提示违规信息，比如我们在阅读Github开源项目代码的时候，如果界面出现一堆红色、黄色的提示，此时心里肯定是飘过一万只草泥马。这个时候我们可以通过Inspection的设置关闭实时检测功能。
 1. 通过右键快速关闭（打开）所有规则的实时检测功能
-
   ![](https://gw.alicdn.com/tfscom/TB1dBbDe_1z01JjSZFCXXXY.XXa.png)
-2. 通过Settings >> Editor >> Inspections 进行手动设置  
 
+2. 通过Settings >> Editor >> Inspections 进行手动设置  
 ![](images/check_rules.jpg)
 
 也可以关闭某条规则的实时检测功能或者修改提示级别。
@@ -88,9 +87,6 @@ Alt+Enter键可呼出Intention菜单，不同的规则会提示不同信息的Qu
    ![](https://gw.alicdn.com/tfscom/TB1Kw5Vm3oQMeJjy0FpXXcTxpXa.png)
 
    ![](https://gw.alicdn.com/tfscom/TB1lHZZiGagSKJjy0FbXXa.mVXa.png)
-
-#### 其他
-面板中其他按钮的功能大家自行探索吧，就不一一赘述了
 
 ### 代码提交时检测
 1. 在提交代码框勾选Alibaba Code Guidelines选项

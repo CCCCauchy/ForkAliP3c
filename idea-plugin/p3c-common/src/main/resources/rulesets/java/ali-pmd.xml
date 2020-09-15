@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="alibaba-pmd"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    //多线程同步相关
+    <rule ref="rulesets/java/ali-concurrent.xml">
+        <exclude name="CountDownShouldInFinallyRule"/>
+        <exclude name="AvoidUseTimerRule"/>
+    </rule>
+
+    //注释
+    <rule ref="rulesets/java/ali-comment.xml"/>
+
+    //命名
+    <rule ref="rulesets/java/ali-naming.xml">
+        <exclude name="ServiceOrDaoClassShouldEndWithImplRule"/>
+    </rule>
+
+    //常量类相关
+    <rule ref="rulesets/java/ali-constant.xml">
+        <exclude name="UpperEllRule"/>
+    </rule>
+
+    //其他
+    <rule ref="rulesets/java/ali-other.xml">
+        <exclude name="AvoidApacheBeanUtilsCopyRule"/>
+        <exclude name="MethodParameterTooMuchRule"/>
+    </rule>
+
+    //异常
+    <rule ref="rulesets/java/ali-exception.xml"/>
+
+    //面向对象
+    <rule ref="rulesets/java/ali-oop.xml">
+        <exclude name="PojoMustOverrideToStringRule"/>
+        <exclude name="PojoMustUsePrimitiveFieldRule"/>
+    </rule>
+
+    //
+    <rule ref="rulesets/java/ali-set.xml"/>
+
+    //
+    <rule ref="rulesets/java/ali-flowcontrol.xml">
+        <exclude name="NeedBraceRule"/>
+    </rule>
+
+</ruleset>

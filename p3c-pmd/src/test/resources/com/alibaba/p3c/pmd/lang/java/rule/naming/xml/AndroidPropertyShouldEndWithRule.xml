@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+    <code-fragment id="ArrayNamingRuleTest">
+        <![CDATA[
+public class Test {
+    private String[] testArray;
+    private String[] array1;
+
+    private void test(){
+         String[] testArray;
+         String[] array2;
+    }
+
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Array property name should end with Array</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>3,7</expected-linenumbers>
+        <code-ref id="ArrayNamingRuleTest"/>
+    </test-code>
+
+    <code-fragment id="ListNamingRuleTest">
+        <![CDATA[
+public class Test {
+    private List<String> testList;
+    private ArrayList<String> testArrayList;
+    private ArrayList<String> testLists;
+
+    private void test(){
+         List<String> test1List;
+         ArrayList<String> test1ArrayList;
+         ArrayList<String> test1Lists;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>List property name should end with List</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>4,9</expected-linenumbers>
+        <code-ref id="ListNamingRuleTest"/>
+    </test-code>
+
+    <code-fragment id="MapNamingRuleTest">
+        <![CDATA[
+public class Test {
+    private Map<String,String> test1Map;
+    private HashMap<String,String> test2Map;
+    private HashMap<String,String> test3;
+
+    private void test(){
+         Map<String,String> test4Map;
+         HashMap<String,String> test5Map;
+         HashMap<String,String> test6;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Map property name should end with Map</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>4,9</expected-linenumbers>
+        <code-ref id="MapNamingRuleTest"/>
+    </test-code>
+
+    <code-fragment id="SetNamingRuleTest">
+        <![CDATA[
+public class Test {
+    private Set<String> test1Set;
+    private HashSet<String> test2Set;
+    private Set<String> test3;
+
+    private void test(){
+         Set<String> test4Set;
+         HashSet<String> test5Set;
+         Set<String> test6;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Set property name should end with Set</description>
+        <expected-problems>2</expected-problems>
+        <expected-linenumbers>4,9</expected-linenumbers>
+        <code-ref id="SetNamingRuleTest"/>
+    </test-code>
+
+    <code-fragment id="SparseArrayNamingRuleTest">
+        <![CDATA[
+public class Test {
+    private SparseArray<String> test1Sa;
+    private SparseArray<String> test1;
+
+    private SparseBooleanArray test2Sa;
+    private SparseBooleanArray test2;
+    private SparseIntArray test3Sa;
+    private SparseIntArray test3;
+    private SparseLongArray test4Sa;
+    private SparseLongArray test4;
+
+    private void test(){
+        SparseArray<String> test8Sa;
+        SparseArray<String> test8;
+
+        SparseBooleanArray test5Sa;
+        SparseBooleanArray test5;
+        SparseIntArray test6Sa;
+        SparseIntArray test6;
+        SparseLongArray test7Sa;
+        SparseLongArray test7;
+    }
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>SparseArray property name should end with Sa</description>
+        <expected-problems>8</expected-problems>
+        <expected-linenumbers>3,6,8,10,14,17,19,21</expected-linenumbers>
+        <code-ref id="SparseArrayNamingRuleTest"/>
+    </test-code>
+
+</test-data>

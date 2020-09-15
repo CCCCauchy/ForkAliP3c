@@ -1,0 +1,237 @@
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+    <code-fragment id="ActivityNamingRuleTest1">
+        <![CDATA[
+public class ActivityTest extends AppCompatActivity {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Activity class name should end with Activity</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="ActivityNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="ActivityNamingRuleTest2">
+        <![CDATA[
+public class TestActivity extends AppCompatActivity {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Activity class name should end with Activity</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ActivityNamingRuleTest2" />
+    </test-code>
+
+    <code-fragment id="ActivityNamingRuleTest3">
+        <![CDATA[
+public class ActivityTest extends Activity {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Activity class name should end with Activity</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="ActivityNamingRuleTest3" />
+    </test-code>
+
+
+    <code-fragment id="ActivityNamingRuleTest4">
+        <![CDATA[
+public class TestActivity extends Activity {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Activity class name should end with Activity</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ActivityNamingRuleTest4" />
+    </test-code>
+
+
+
+    <code-fragment id="FragmentNamingRuleTest1">
+        <![CDATA[
+public class FragmentTest extends Fragment {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Fragment class name should end with Fragment</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="FragmentNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="FragmentNamingRuleTest2">
+        <![CDATA[
+public class TestFragment extends Fragment {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Fragment class name should end with Fragment</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="FragmentNamingRuleTest2" />
+    </test-code>
+
+
+    <code-fragment id="FragmentDialogNamingRuleTest1">
+        <![CDATA[
+public class FragmentTest extends  DialogFragment{
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>DialogFragment class name should end with FragmentDialog</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="FragmentDialogNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="FragmentDialogNamingRuleTest2">
+        <![CDATA[
+public class TestFragmentDialog extends DialogFragment {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>DialogFragment class name should end with FragmentDialog</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="FragmentDialogNamingRuleTest2" />
+    </test-code>
+
+
+    <code-fragment id="AdapterNamingRuleTest1">
+        <![CDATA[
+public class AdapterTest extends RecyclerView.Adapter {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Adapter class name should end with Adapter</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="AdapterNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="AdapterNamingRuleTest2">
+        <![CDATA[
+public class TestAdapter extends RecyclerView.Adapter {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Adapter class name should end with Adapter</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="AdapterNamingRuleTest2" />
+    </test-code>
+
+    <code-fragment id="BroadcastReceiverNamingRuleTest1">
+        <![CDATA[
+public class ReceiverTest extends BroadcastReceiver {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>BroadcastReceiver class name should end with Receiver</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="BroadcastReceiverNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="BroadcastReceiverNamingRuleTest2">
+        <![CDATA[
+public class TestReceiver extends BroadcastReceiver {
+}
+    ]]>
+    </code-fragment>
+
+    <test-code>
+        <description>BroadcastReceiver class name should end with Receiver</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="BroadcastReceiverNamingRuleTest2" />
+    </test-code>
+
+
+    <code-fragment id="ServiceNamingRuleTest1">
+        <![CDATA[
+public class ServiceTest extends Service {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Service class name should end with Service</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="ServiceNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="ServiceNamingRuleTest2">
+        <![CDATA[
+public class TestService extends Service {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>Service class name should end with Service</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ServiceNamingRuleTest2" />
+    </test-code>
+
+
+    <code-fragment id="IntentServiceNamingRuleTest1">
+        <![CDATA[
+public class TestService extends IntentService {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>IntentService class name should end with IntentService</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="IntentServiceNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="IntentServiceNamingRuleTest2">
+        <![CDATA[
+public class TestIntentService extends IntentService {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>IntentService class name should end with IntentService</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="IntentServiceNamingRuleTest2" />
+    </test-code>
+
+
+    <code-fragment id="ContentResolverNamingRuleTest1">
+        <![CDATA[
+public class ResolverTest extends ContentResolver {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>ContentResolver class name should end with Resolver</description>
+        <expected-problems>1</expected-problems>
+        <expected-linenumbers>1</expected-linenumbers>
+        <code-ref id="ContentResolverNamingRuleTest1" />
+    </test-code>
+
+    <code-fragment id="ContentResolverNamingRuleTest2">
+        <![CDATA[
+public class TestResolver extends ContentResolver {
+}
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>ContentResolver class name should end with Resolver</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="ContentResolverNamingRuleTest2" />
+    </test-code>
+
+</test-data>

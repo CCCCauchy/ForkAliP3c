@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+
+    <code-fragment id="parameter-more-than-3"><![CDATA[
+public class MethodParameterTooMuchRule {
+
+    @Test
+    public void test(String a, int b, int c, int d) {
+        System.out.println(b + c + d);
+        System.out.println(a);
+    }
+}
+]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Method parameter to much</description>
+        <expected-problems>1</expected-problems>
+        <code-ref id="parameter-more-than-3" />
+    </test-code>
+
+    <code-fragment id="parameter-equal-3"><![CDATA[
+public class MethodParameterTooMuchRule {
+
+    @Test
+    public void test(int a, int b, int c) {
+        System.out.println(b + c + d);
+    }
+}
+]]>
+    </code-fragment>
+
+    <code-fragment id="parameter-less-than-3"><![CDATA[
+public class MethodParameterTooMuchRule {
+
+    @Test
+    public void test(int a, int b) {
+        System.out.println(b + c);
+    }
+}
+]]>
+    </code-fragment>
+
+    <test-code>
+        <description>Method parameter to much</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="parameter-equal-3" />
+    </test-code>
+
+    <test-code>
+        <description>Method parameter to much</description>
+        <expected-problems>0</expected-problems>
+        <code-ref id="parameter-less-than-3" />
+    </test-code>
+</test-data>

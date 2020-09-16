@@ -32,7 +32,6 @@ public class ColorNameRule extends AbstractXmlRule {
         XmlNodeWrapper xmlNodeWrapper = (XmlNodeWrapper) node;
 
         if ("color".equals(xmlNodeWrapper.getLocalName())) {
-            xmlNodeWrapper.getXPathAttributesIterator();
             AttributeMap attributeMap = (AttributeMap) xmlNodeWrapper.getAttributes();
             DeferredAttrNSImpl nameNode = (DeferredAttrNSImpl) attributeMap.getNamedItem("name");
             if (colorNamePattern.matcher(nameNode.getValue()).find()) {
@@ -40,10 +39,12 @@ public class ColorNameRule extends AbstractXmlRule {
                 DeferredTextImpl valueNode = (DeferredTextImpl) xmlNodeWrapper.getFirstChild();
                 if (StringUtils.isEmpty(valueNode.getData()) || !nameArray[nameArray.length - 1]
                         .equalsIgnoreCase(valueNode.getData().substring(1))) {
-                    addViolationWithMessage(ctx, node, I18nResources.getMessage("xml.naming.ColorNameRule.violation.msg"));
+                    addViolationWithMessage(ctx, node
+                            , I18nResources.getMessage("xml.naming.ColorNameRule.violation.msg", nameNode.getValue()));
                 }
             } else {
-                addViolationWithMessage(ctx, node, I18nResources.getMessage("xml.naming.ColorNameRule.violation.msg"));
+                addViolationWithMessage(ctx, node
+                        , I18nResources.getMessage("xml.naming.ColorNameRule.violation.msg", nameNode.getValue()));
             }
         }
 

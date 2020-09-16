@@ -18,5 +18,18 @@
         </example>
     </rule>
 
+    <rule name="StringNameRule"
+          language="java"
+          message="xml.naming.StringNameRule.rule.msg"
+          class="com.alibaba.p3c.pmd.lang.java.rule.xml.StringNameRule">
+        <priority>3</priority>
+        <example>
+            <![CDATA[
+            <color name="c_999999">#999999</color>
+            <color name="c_b0000000">#b0000000</color>
+            ]]>
+        </example>
+    </rule>
+
 </ruleset>
 

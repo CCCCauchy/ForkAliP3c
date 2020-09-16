@@ -15,5 +15,6 @@ public class XmlRulesTest extends SimpleAggregatorTst {
     @Override
     protected void setUp() {
         addRule(RULESET, "ColorNameRule");
+        addRule(RULESET, "StringNameRule");
     }
 }

@@ -643,4 +643,15 @@
         <![CDATA[【%s】建议以【c_颜色值】形式命名 ]]>
     </entry>
 
+    <entry key="xml.naming.StringNameRule.rule.msg">
+        <![CDATA[ 文案资源命名，如：
+         <string name="weekend_desc">周末:周六~周日</string>
+         <string name="next">下一步</string>
+        ]]>
+    </entry>
+
+    <entry key="xml.naming.StringNameRule.violation.msg">
+        <![CDATA[【%s】建议以【页面名称(或者简写)_[类型]_[实际意义单词]】形式命名 。其中 [类型]、[实际意义单词] 至少包含一个。]]>
+    </entry>
+
 </properties>

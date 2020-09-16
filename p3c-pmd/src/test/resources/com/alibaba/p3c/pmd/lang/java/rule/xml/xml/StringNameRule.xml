@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test-data xmlns="http://pmd.sourceforge.net/rule-tests"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://pmd.sourceforge.net/rule-tests https://pmd.sourceforge.io/rule-tests_1_0_0.xsd">
+    <code-fragment id="stringNameTest1"><![CDATA[
+    <?xml version="1.0" encoding="utf-8"?>
+        <resources>
+             <string name="print_预约单">预约单</string>
+             <string name="取餐时间">取餐时间</string>
+             <string name="meal_time">取餐时间</string>
+             <string name="_meal_time">取餐时间</string>
+             <string name="meal_time_">取餐时间</string>
+             <string name="Meal_time_">取餐时间</string>
+             <string name="meal_Time_">取餐时间</string>
+         </resources>
+    ]]>
+    </code-fragment>
+    <test-code>
+        <description>stringName Test ok</description>
+        <expected-problems>6</expected-problems>
+        <expected-linenumbers>3,4,6,7,8,9</expected-linenumbers>
+        <code-ref id="stringNameTest1"/>
+    </test-code>
+
+</test-data>

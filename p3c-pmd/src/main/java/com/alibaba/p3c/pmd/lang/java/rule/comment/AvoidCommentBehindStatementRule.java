@@ -15,21 +15,12 @@
  */
 package com.alibaba.p3c.pmd.lang.java.rule.comment;
 
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
 import com.alibaba.p3c.pmd.I18nResources;
 import com.alibaba.p3c.pmd.lang.java.rule.util.NodeSortUtils;
-
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
-import net.sourceforge.pmd.lang.java.ast.ASTEnumConstant;
-import net.sourceforge.pmd.lang.java.ast.ASTExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTFieldDeclaration;
-import net.sourceforge.pmd.lang.java.ast.AbstractJavaNode;
-import net.sourceforge.pmd.lang.java.ast.Comment;
+import net.sourceforge.pmd.lang.java.ast.*;
+
+import java.util.*;
 
 /**
  * [Mandatory] Single line comments in a method should be put above the code to be commented, by using // and
@@ -44,17 +35,31 @@ public class AvoidCommentBehindStatementRule extends AbstractAliCommentRule {
         SortedMap<Integer, Node> itemsByLineNumber = orderedCommentsAndExpressions(cUnit);
         AbstractJavaNode lastNode = null;
 
-        for (Entry<Integer, Node> entry : itemsByLineNumber.entrySet()) {
-            Node value = entry.getValue();
+        Iterator<Node> valueIterator = itemsByLineNumber.values().iterator();
+        while (valueIterator.hasNext()) {
+            Node value = valueIterator.next();
             if (value instanceof AbstractJavaNode) {
-                lastNode = (AbstractJavaNode)value;
+                lastNode = (AbstractJavaNode) value;
+
+                //添加switch case必须添加行尾注释
+                if (value.jjtGetParent() instanceof ASTSwitchLabel && valueIterator.hasNext()) {
+                    Node nextValue = valueIterator.next();
+                    if (!(nextValue instanceof Comment)) {
+                        addViolationWithMessage(data, value,
+                                I18nResources.getMessage("java.comment.AvoidCommentBehindStatementRule.violation.msg.case"),
+                                value.getBeginLine(), value.getEndLine());
+                    }
+                }
+
             } else if (value instanceof Comment) {
-                Comment comment = (Comment)value;
-                if (lastNode != null && (comment.getBeginLine() == lastNode.getBeginLine())
-                    && (comment.getEndColumn() > lastNode.getBeginColumn())) {
-                    addViolationWithMessage(data, lastNode,
-                        I18nResources.getMessage("java.comment.AvoidCommentBehindStatementRule.violation.msg"),
-                        comment.getBeginLine(), comment.getEndLine());
+                Comment comment = (Comment) value;
+                if (lastNode != null && !(lastNode.jjtGetParent() instanceof ASTSwitchLabel)) {
+                    if (comment.getBeginLine() == lastNode.getBeginLine()
+                            && comment.getEndColumn() > lastNode.getBeginColumn()) {
+                        addViolationWithMessage(data, lastNode,
+                                I18nResources.getMessage("java.comment.AvoidCommentBehindStatementRule.violation.msg"),
+                                comment.getBeginLine(), comment.getEndLine());
+                    }
                 }
             }
         }
@@ -74,16 +79,24 @@ public class AvoidCommentBehindStatementRule extends AbstractAliCommentRule {
 
         // expression nodes
         List<ASTExpression> expressionNodes = cUnit.findDescendantsOfType(ASTExpression.class);
-        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, expressionNodes);
+        List<ASTExpression> notSwitchNodes = new ArrayList<>();
+        for (int i = 0; i < expressionNodes.size(); i++) {
+            if (expressionNodes.get(i).jjtGetParent() instanceof ASTSwitchLabel) {
+                expressionNodes.get(i).comment();
+//                continue;
+            }
+            notSwitchNodes.add(expressionNodes.get(i));
+        }
+        NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, notSwitchNodes);
 
         // filed declaration nodes
         List<ASTFieldDeclaration> fieldNodes =
-            cUnit.findDescendantsOfType(ASTFieldDeclaration.class);
+                cUnit.findDescendantsOfType(ASTFieldDeclaration.class);
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, fieldNodes);
 
         // enum constant nodes
         List<ASTEnumConstant> enumConstantNodes =
-            cUnit.findDescendantsOfType(ASTEnumConstant.class);
+                cUnit.findDescendantsOfType(ASTEnumConstant.class);
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, enumConstantNodes);
 
         NodeSortUtils.addNodesToSortedMap(itemsByLineNumber, cUnit.getComments());

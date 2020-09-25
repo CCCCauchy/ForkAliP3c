@@ -34,7 +34,6 @@ public class AndroidClassShouldEndWithRule extends AbstractAliRule {
 
     private static final String ACTIVITY_END_SUFFIX = "Activity";
     private static final String FRAGMENT_END_SUFFIX = "Fragment";
-    private static final String FRAGMENT_DIALOG_END_SUFFIX = "FragmentDialog";
     private static final String ADAPTER_END_SUFFIX = "Adapter";
     private static final String RECEIVER_END_SUFFIX = "Receiver";
     private static final String SERVICE_END_SUFFIX = "Service";
@@ -49,7 +48,7 @@ public class AndroidClassShouldEndWithRule extends AbstractAliRule {
     public Object visit(ASTExtendsList node, Object data) {
         processAndroidClass(node, data, ACTIVITY_END_SUFFIX, ACTIVITY_END_SUFFIX, "java.naming.ActivityClassShouldEndWithActivityRule.violation.msg");
         processAndroidClass(node, data, FRAGMENT_END_SUFFIX, FRAGMENT_END_SUFFIX, "java.naming.FragmentClassShouldEndWithFragmentRule.violation.msg");
-        processAndroidClass(node, data, FRAGMENT_DIALOG_END_SUFFIX, DIALOG_FRAGMENT, "java.naming.FragmentDialogClassShouldEndWithFragmentDialogRule.violation.msg");
+        processAndroidClass(node, data, DIALOG_FRAGMENT, DIALOG_FRAGMENT, "java.naming.FragmentDialogClassShouldEndWithFragmentDialogRule.violation.msg");
         processAndroidClass(node, data, ADAPTER_END_SUFFIX, ADAPTER_END_SUFFIX, "java.naming.AdapterClassShouldEndWithAdapterRule.violation.msg");
         processAndroidClass(node, data, RECEIVER_END_SUFFIX, BROADCAST_RECEIVER, "java.naming.BroadcastReceiverClassShouldEndWithBroadcastReceiverRule.violation.msg");
         processAndroidClass(node, data, SERVICE_END_SUFFIX, SERVICE_END_SUFFIX, "java.naming.ServiceClassShouldEndWithServiceRule.violation.msg");

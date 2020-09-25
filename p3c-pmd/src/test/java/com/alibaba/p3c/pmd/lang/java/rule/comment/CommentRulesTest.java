@@ -30,11 +30,11 @@ public class CommentRulesTest extends SimpleAggregatorTst {
 
     @Override
     public void setUp() {
-        addRule(RULESET, "CommentsMustBeJavadocFormatRule");
-        addRule(RULESET, "AbstractMethodOrInterfaceMethodMustUseJavadocRule");
+//        addRule(RULESET, "CommentsMustBeJavadocFormatRule");
+//        addRule(RULESET, "AbstractMethodOrInterfaceMethodMustUseJavadocRule");
         addRule(RULESET, "ClassMustHaveAuthorRule");
-        addRule(RULESET, "EnumConstantsMustHaveCommentRule");
-        addRule(RULESET, "AvoidCommentBehindStatementRule");
-        addRule(RULESET, "RemoveCommentedCodeRule");
+//        addRule(RULESET, "EnumConstantsMustHaveCommentRule");
+//        addRule(RULESET, "AvoidCommentBehindStatementRule");
+//        addRule(RULESET, "RemoveCommentedCodeRule");
     }
 }

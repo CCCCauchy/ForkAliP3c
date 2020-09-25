@@ -46,4 +46,6 @@
         <exclude name="NeedBraceRule"/>
     </rule>
 
+    <rule ref="rulesets/java/ali-xml.xml"/>
+
 </ruleset>

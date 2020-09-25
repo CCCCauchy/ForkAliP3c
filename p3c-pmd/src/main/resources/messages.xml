@@ -411,6 +411,9 @@
     <entry key="java.comment.AvoidCommentBehindStatementRule.violation.msg">
         <![CDATA[请不要使用行尾注释]]>
     </entry>
+    <entry key="java.comment.AvoidCommentBehindStatementRule.violation.msg.case">
+        <![CDATA[Switch Case 后必须添加行尾注释]]>
+    </entry>
 
     <entry key="java.comment.ClassMustHaveAuthorRule.rule.msg">
         <![CDATA[所有的类都必须添加类注释信息。]]>
@@ -421,10 +424,22 @@
         ]]>
     </entry>
     <entry key="java.comment.ClassMustHaveAuthorRule.violation.msg.comment">
-        <![CDATA[【%s】缺少包含author的注释信息]]>
+        <![CDATA[【%s】缺少类注释信息]]>
+    </entry>
+    <entry key="java.comment.ClassMustHaveAuthorRule.violation.msg.desc">
+        <![CDATA[【%s】类注释缺少desc信息]]>
+    </entry>
+    <entry key="java.comment.ClassMustHaveAuthorRule.violation.msg.time">
+        <![CDATA[【%s】类注释缺少time信息]]>
     </entry>
     <entry key="java.comment.ClassMustHaveAuthorRule.violation.msg.author">
-        <![CDATA[【%s】注释缺少author信息]]>
+        <![CDATA[【%s】类注释缺少author信息]]>
+    </entry>
+    <entry key="java.comment.ClassMustHaveAuthorRule.violation.msg.since">
+        <![CDATA[【%s】类注释缺少since信息]]>
+    </entry>
+    <entry key="java.comment.ClassMustHaveAuthorRule.violation.msg.all">
+        <![CDATA[【%s】类注释格式错误]]>
     </entry>
 
     <entry key="java.comment.EnumConstantsMustHaveCommentRule.rule.msg">

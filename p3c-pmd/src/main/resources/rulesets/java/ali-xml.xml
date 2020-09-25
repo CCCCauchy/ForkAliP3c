@@ -25,11 +25,13 @@
         <priority>3</priority>
         <example>
             <![CDATA[
-            <color name="c_999999">#999999</color>
-            <color name="c_b0000000">#b0000000</color>
+            <string name="order_msg_cancel_order">取消订单</string>
+            <string name="order_online_pay">在线支付</string>
+            <string name="order_send_time">送达时间</string>
             ]]>
         </example>
     </rule>
+
 
 </ruleset>
 

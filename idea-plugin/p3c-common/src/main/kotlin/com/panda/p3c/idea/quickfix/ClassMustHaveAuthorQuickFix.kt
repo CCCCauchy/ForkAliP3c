@@ -15,13 +15,16 @@
  */
 package com.panda.p3c.idea.quickfix
 
-import com.panda.p3c.idea.i18n.P3cBundle
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiClass
+import com.intellij.psi.impl.source.javadoc.PsiDocCommentImpl
 import com.intellij.psi.javadoc.PsiDocToken
+import com.panda.p3c.idea.i18n.P3cBundle
 import com.siyeh.ig.InspectionGadgetsFix
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  *
@@ -31,7 +34,19 @@ import com.siyeh.ig.InspectionGadgetsFix
  */
 object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
 
-    val tag = "@author ${System.getProperty("user.name") ?: System.getenv("USER")}"
+    val authorName = System.getProperty("user.name") ?: System.getenv("USER")
+    val timeString = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Date())
+    val authorTag = "author: ${authorName} </br>"
+    val timeTag = "time: $timeString </br>"
+
+    val defaultComment = """
+/**
+ * desc: TODO: $authorName </br>
+ * $timeTag
+ * $authorTag
+ * since: TODO: $authorName </br>
+ */
+"""
 
     override fun doFix(project: Project?, descriptor: ProblemDescriptor?) {
         descriptor ?: return
@@ -41,11 +56,7 @@ object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
         val psiFacade = JavaPsiFacade.getInstance(project)
         val factory = psiFacade.elementFactory
         if (document == null) {
-            val doc = factory.createDocCommentFromText("""
-/**
- * $tag
- */
-""")
+            val doc = factory.createDocCommentFromText(defaultComment)
             if (psiClass.isEnum) {
                 psiClass.containingFile.addAfter(doc, psiClass.prevSibling)
             } else {
@@ -60,19 +71,25 @@ object ClassMustHaveAuthorQuickFix : InspectionGadgetsFix(), AliQuickFix {
                 val groups = regex.find(line.text)?.groups ?: continue
                 val author = groups[1]?.value ?: continue
                 val date = groups[2]?.value ?: continue
-                document.addBefore(factory.createDocTagFromText("@date $date"), line)
-                document.addBefore(factory.createDocTagFromText("@author $author"), line)
                 line.delete()
+                val doc = factory.createDocCommentFromText("""
+/**
+ * desc: TODO: $authorName </br>
+ * time: $date </br>
+ * author: ${author} </br>
+ * since: TODO: $authorName </br>
+ */
+""")
+                psiClass.addBefore(doc,psiClass.firstChild)
+                document.delete()
+
                 return
             }
         }
 
-        if (document.tags.isNotEmpty()) {
-            document.addBefore(factory.createDocTagFromText(tag), document.tags[0])
-            return
-        }
-
-        document.add(factory.createDocTagFromText(tag))
+        val doc = factory.createDocCommentFromText(defaultComment)
+        psiClass.addBefore(doc,psiClass.firstChild)
+        document.delete()
     }
 
     override val ruleName: String

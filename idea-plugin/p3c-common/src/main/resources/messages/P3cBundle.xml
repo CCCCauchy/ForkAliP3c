@@ -10,7 +10,7 @@
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.close">关闭实时检测功能</entry>
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.open">打开实时检测功能</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.delete_$">删除开头的 $ 或者 _</entry>
-    <entry key="com.alibaba.p3c.idea.quickfix.generate.author">添加/提取 author</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.generate.author">添加/提取 类注释信息</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore">修正为以下划线分隔大写模式</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.variable.lowerCamelCase">修改为小写驼峰命名（lowerCamelCase）</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.vm.add!">为变量添加!</entry>

@@ -11,7 +11,7 @@
     </entry>
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.open">Open inspection on the fly</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.delete_$">Delete starting '$' or '_'</entry>
-    <entry key="com.alibaba.p3c.idea.quickfix.generate.author">Add/Extract author</entry>
+    <entry key="com.alibaba.p3c.idea.quickfix.generate.author">Add/Extract class comments</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore">Refactor to upper case with underscore
     </entry>
     <entry key="com.alibaba.p3c.idea.quickfix.variable.lowerCamelCase">Refactor to lower camel case name</entry>

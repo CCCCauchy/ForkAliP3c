@@ -78,7 +78,8 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
                 AliControlFlowStatementWithoutBracesInspection::class.java,
                 AliEqualsAvoidNullInspection::class.java,
                 AliLongLiteralsEndingWithLowercaseLInspection::class.java,
-                AliWrapperTypeEqualityInspection::class.java
+                AliWrapperTypeEqualityInspection::class.java,
+                JavaDataTypeConvertInspection::class.java
         )
         val javaShouldInspectChecker = object : ShouldInspectChecker {
             override fun shouldInspect(file: PsiFile): Boolean {

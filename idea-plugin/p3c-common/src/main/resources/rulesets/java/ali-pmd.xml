@@ -30,7 +30,9 @@
     </rule>
 
     //异常
-    <rule ref="rulesets/java/ali-exception.xml"/>
+    <rule ref="rulesets/java/ali-exception.xml">
+        <exclude name="TransactionMustHaveRollbackRule"/>
+    </rule>
 
     //面向对象
     <rule ref="rulesets/java/ali-oop.xml">

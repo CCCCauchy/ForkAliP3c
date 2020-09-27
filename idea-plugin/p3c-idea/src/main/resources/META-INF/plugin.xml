@@ -6,6 +6,10 @@
     <change-notes>
         <![CDATA[
         <ul>
+        1.0.2
+        <li>修复不检查xml文件问题</li>
+        </ul>
+        <ul>
         1.0.1
         <li>Add rules by <a href="http://10.0.3.122:8081/pub/doc/-/tree/master/%E8%A7%84%E8%8C%83">Panda Android Coding Guidelines</a></li>
         <li>Add 字符类型转换数字类型检测</li>
@@ -17,7 +21,7 @@
         ]]>
     </change-notes>
     <vendor>Panda</vendor>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <idea-version since-build="145.0"/>
     <depends optional="true">com.intellij.velocity</depends>
     <depends optional="true" config-file="p3c.xml">com.intellij.modules.java</depends>

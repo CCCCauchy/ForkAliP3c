@@ -4,10 +4,7 @@ import com.intellij.codeHighlighting.HighlightDisplayLevel
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.LocalInspectionToolSession
 import com.intellij.codeInspection.ProblemsHolder
-import com.intellij.psi.JavaElementVisitor
-import com.intellij.psi.PsiElementVisitor
-import com.intellij.psi.PsiMethodCallExpression
-import com.intellij.psi.PsiTryStatement
+import com.intellij.psi.*
 import com.intellij.psi.util.PsiTreeUtil
 
 /**
@@ -18,6 +15,7 @@ import com.intellij.psi.util.PsiTreeUtil
  */
 class JavaDataTypeConvertInspection : LocalInspectionTool, AliBaseInspection {
     constructor()
+
     /**
      * For Javassist
      */
@@ -69,26 +67,28 @@ class JavaDataTypeConvertInspection : LocalInspectionTool, AliBaseInspection {
     /**
      * 判断Java代码中是不是类型转换的方法
      */
-    private fun checkMethodIsDataConvert(expression: PsiMethodCallExpression): Boolean {
+    private fun checkMethodIsDataConvert(expression: PsiExpression): Boolean {
         val text = expression.text
+
+
         if (
-                text.contains("Boolean.parseBoolean(")
-                || text.contains("Byte.parseByte(")
+                text.contains("Byte.parseByte(")
                 || text.contains("Short.parseShort(")
                 || text.contains("Integer.parseInt(")
                 || text.contains("Float.parseFloat(")
                 || text.contains("Long.parseLong(")
                 || text.contains("Double.parseDouble(")
 
-                || text.contains("Boolean.valueOf(")
                 || text.contains("Byte.valueOf(")
                 || text.contains("Short.valueOf(")
-                || text.contains("Integer.valueOf(")
                 || text.contains("Float.valueOf(")
                 || text.contains("Long.valueOf(")
                 || text.contains("Double.valueOf(")
         ) {
             return true
+        } else if (text.contains("Integer.valueOf(")) {
+            val index = text.indexOf("Integer.valueOf(");
+            return index > 0 && !text.get(index - 1).isLetterOrDigit()
         }
         return false
     }

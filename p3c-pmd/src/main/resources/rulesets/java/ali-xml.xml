@@ -1,34 +1,33 @@
 <?xml version="1.0"?>
-
-<ruleset name="AlibabaJavaSets" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+<ruleset name="AlibabaJavaXml" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
     <description>xml 文件规范</description>
 
     <rule name="ColorNameRule"
-          language="java"
+          language="xml"
           message="xml.naming.ColorNameRule.rule.msg"
           class="com.alibaba.p3c.pmd.lang.java.rule.xml.ColorNameRule">
         <priority>3</priority>
         <example>
-            <![CDATA[
-            <color name="c_999999">#999999</color>
-            <color name="c_b0000000">#b0000000</color>
-            ]]>
+<![CDATA[
+    <color name="c_999999">#999999</color>
+    <color name="c_b0000000">#b0000000</color>
+]]>
         </example>
     </rule>
 
     <rule name="StringNameRule"
-          language="java"
+          language="xml"
           message="xml.naming.StringNameRule.rule.msg"
           class="com.alibaba.p3c.pmd.lang.java.rule.xml.StringNameRule">
         <priority>3</priority>
         <example>
-            <![CDATA[
-            <string name="order_msg_cancel_order">取消订单</string>
-            <string name="order_online_pay">在线支付</string>
-            <string name="order_send_time">送达时间</string>
-            ]]>
+<![CDATA[
+    <string name="order_msg_cancel_order">取消订单</string>
+    <string name="order_online_pay">在线支付</string>
+    <string name="order_send_time">送达时间</string>
+]]>
         </example>
     </rule>
 

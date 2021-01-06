@@ -49,21 +49,21 @@ object InspectionProfileService {
             in PluginVersions.baseVersion171..Int.MAX_VALUE -> {
                 val clz = Class.forName("com.intellij.codeInspection.ex.InspectionProfileKt")
                 val method = clz.methods.first { it.name == "createSimple" }
-                method.invoke(null, "Alibaba Coding Guidelines", managerEx.project, allWrappers.toList())
+                method.invoke(null, "Panda Coding Guidelines", managerEx.project, allWrappers.toList())
                         as InspectionProfileImpl
             }
             PluginVersions.baseVersion163 -> {
                 val method = profile.javaClass.methods.first {
                     it.name == "createSimple"
                 }
-                method.invoke(null, "Alibaba Coding Guidelines", managerEx.project, allWrappers.toList())
+                method.invoke(null, "Panda Coding Guidelines", managerEx.project, allWrappers.toList())
                         as InspectionProfileImpl
             }
             else -> {
                 val method = profile.javaClass.methods.first {
                     it.name == "createSimple"
                 }
-                method.invoke(null, "Alibaba Coding Guidelines", managerEx.project, allWrappers.toTypedArray())
+                method.invoke(null, "Panda Coding Guidelines", managerEx.project, allWrappers.toTypedArray())
                         as InspectionProfileImpl
             }
         }

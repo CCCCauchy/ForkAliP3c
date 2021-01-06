@@ -6,7 +6,7 @@
     <entry key="com.alibaba.p3c.action.switch_language.text.cur_en">Switch language to Chinese</entry>
     <entry key="com.alibaba.p3c.action.switch_language.text.success">
         <![CDATA[Switch language success，<a href="restart">restart</a> to get effect.]]></entry>
-    <entry key="com.alibaba.p3c.idea.action.AliInspectionAction.text">Alibaba Coding Guidelines Analyze</entry>
+    <entry key="com.alibaba.p3c.idea.action.AliInspectionAction.text">Panda Coding Guidelines Analyze</entry>
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.close">Close inspection on the fly
     </entry>
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.open">Open inspection on the fly</entry>

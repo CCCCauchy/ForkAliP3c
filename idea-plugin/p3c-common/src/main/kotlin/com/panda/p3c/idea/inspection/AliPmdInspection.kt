@@ -101,7 +101,7 @@ class AliPmdInspection(private val ruleName: String)
 
     override fun getShortName(): String {
 
-        var shortName = "Alibaba" + ruleName
+        var shortName = "Panda" + ruleName
         val index = shortName.lastIndexOf("Rule")
         if (index > NumberConstants.INDEX_0) {
             shortName = shortName.substring(NumberConstants.INDEX_0, index)

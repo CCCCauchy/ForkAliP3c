@@ -16,12 +16,6 @@
 package com.panda.p3c.idea.inspection
 
 import com.alibaba.p3c.pmd.I18nResources
-import com.panda.p3c.idea.config.P3cConfig
-import com.panda.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection
-import com.panda.p3c.idea.inspection.standalone.AliDeprecationInspection
-import com.panda.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection
-import com.panda.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection
-import com.panda.smartfox.idea.common.util.getService
 import com.beust.jcommander.internal.Lists
 import com.beust.jcommander.internal.Maps
 import com.intellij.codeInspection.InspectionToolProvider
@@ -32,11 +26,13 @@ import com.intellij.psi.PsiCompiledFile
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiImportList
 import com.intellij.psi.PsiJavaFile
-import javassist.CannotCompileException
-import javassist.ClassClassPath
-import javassist.ClassPool
-import javassist.CtField
-import javassist.NotFoundException
+import com.panda.p3c.idea.config.P3cConfig
+import com.panda.p3c.idea.inspection.standalone.AliAccessStaticViaInstanceInspection
+import com.panda.p3c.idea.inspection.standalone.AliDeprecationInspection
+import com.panda.p3c.idea.inspection.standalone.AliMissingOverrideAnnotationInspection
+import com.panda.p3c.idea.inspection.standalone.MapOrSetKeyShouldOverrideHashCodeEqualsInspection
+import com.panda.smartfox.idea.common.util.getService
+import javassist.*
 import net.sourceforge.pmd.Rule
 import net.sourceforge.pmd.RuleSetFactory
 import net.sourceforge.pmd.RuleSetNotFoundException
@@ -70,17 +66,18 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
         val ruleNames: MutableList<String> = Lists.newArrayList<String>()!!
         private val CLASS_LIST = Lists.newArrayList<Class<*>>()
         private val nativeInspectionToolClass = arrayListOf<Class<out LocalInspectionTool>>(
-                AliMissingOverrideAnnotationInspection::class.java,
-                AliAccessStaticViaInstanceInspection::class.java,
-                AliDeprecationInspection::class.java,
-                MapOrSetKeyShouldOverrideHashCodeEqualsInspection::class.java,
-                AliArrayNamingShouldHaveBracketInspection::class.java,
-                AliControlFlowStatementWithoutBracesInspection::class.java,
-                AliEqualsAvoidNullInspection::class.java,
-                AliLongLiteralsEndingWithLowercaseLInspection::class.java,
-                AliWrapperTypeEqualityInspection::class.java,
-                JavaDataTypeConvertInspection::class.java
+            AliMissingOverrideAnnotationInspection::class.java,
+            AliAccessStaticViaInstanceInspection::class.java,
+            AliDeprecationInspection::class.java,
+            MapOrSetKeyShouldOverrideHashCodeEqualsInspection::class.java,
+            AliArrayNamingShouldHaveBracketInspection::class.java,
+            AliControlFlowStatementWithoutBracesInspection::class.java,
+            AliEqualsAvoidNullInspection::class.java,
+            AliLongLiteralsEndingWithLowercaseLInspection::class.java,
+            AliWrapperTypeEqualityInspection::class.java,
+            JavaDataTypeConvertInspection::class.java
         )
+
         val javaShouldInspectChecker = object : ShouldInspectChecker {
             override fun shouldInspect(file: PsiFile): Boolean {
                 val basicInspect = file is PsiJavaFile && file !is PsiCompiledFile
@@ -101,14 +98,27 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
                 }
             }
 
-            private fun validScope(file: PsiFile): Boolean {
-                val virtualFile = file.virtualFile
-                val index = ProjectRootManager.getInstance(file.project).fileIndex
-                return index.isInSource(virtualFile)
-                        && !index.isInTestSourceContent(virtualFile)
-                        && !index.isInLibraryClasses(virtualFile)
-                        && !index.isInLibrarySource(virtualFile)
+        }
+
+        val xmlShouldInspectChecker = object : ShouldInspectChecker {
+            override fun shouldInspect(file: PsiFile): Boolean {
+                if (!validScope(file)) {
+                    return false
+                }
+
+                val virtualFile = file.virtualFile ?: return false
+                val path = virtualFile.canonicalPath
+                return path != null && (path.endsWith("strings.xml") || path.endsWith("colors.xml"))
             }
+        }
+
+        private fun validScope(file: PsiFile): Boolean {
+            val virtualFile = file.virtualFile
+            val index = ProjectRootManager.getInstance(file.project).fileIndex
+            return index.isInSource(virtualFile)
+                    && !index.isInTestSourceContent(virtualFile)
+                    && !index.isInLibraryClasses(virtualFile)
+                    && !index.isInLibrarySource(virtualFile)
         }
 
         init {
@@ -164,13 +174,7 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
         private fun newRuleInfos(): List<RuleInfo> {
             val result = Lists.newArrayList<RuleInfo>()
             result.addAll(processForRuleSet("java/ali-pmd", javaShouldInspectChecker))
-//            result.addAll(processForRuleSet("vm/ali-other", object : ShouldInspectChecker {
-//                override fun shouldInspect(file: PsiFile): Boolean {
-//                    val virtualFile = file.virtualFile ?: return false
-//                    val path = virtualFile.canonicalPath
-//                    return path != null && path.endsWith(".vm")
-//                }
-//            }))
+            result.addAll(processForRuleSet("xml/ali-xml", xmlShouldInspectChecker))
             return result
         }
 

@@ -1,13 +1,14 @@
 package com.alibaba.p3c.pmd.lang.java.rule.xml;
 
 import com.alibaba.p3c.pmd.I18nResources;
+import com.alibaba.p3c.pmd.lang.java.rule.AbstractPandaXmlRule;
+import com.alibaba.p3c.pmd.lang.java.util.ViolationUtils;
 import com.sun.org.apache.xerces.internal.dom.AttributeMap;
 import com.sun.org.apache.xerces.internal.dom.DeferredAttrNSImpl;
 import com.sun.org.apache.xerces.internal.dom.DeferredTextImpl;
 import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.lang.xml.ast.XmlNode;
 import net.sourceforge.pmd.lang.xml.ast.XmlNodeWrapper;
-import net.sourceforge.pmd.lang.xml.rule.AbstractXmlRule;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.regex.Pattern;
@@ -18,7 +19,7 @@ import java.util.regex.Pattern;
  * author: Cauchy <br/>
  * since: V1.0 <br/>
  */
-public class ColorNameRule extends AbstractXmlRule {
+public class ColorNameRule extends AbstractPandaXmlRule {
 
     //颜色命名正则
     private Pattern colorNamePattern = Pattern.compile("^(c_|m_base_c_)(([A-Fa-f0-9]{6})|([A-Fa-f0-9]{8}))");
@@ -39,12 +40,13 @@ public class ColorNameRule extends AbstractXmlRule {
                 DeferredTextImpl valueNode = (DeferredTextImpl) xmlNodeWrapper.getFirstChild();
                 if (StringUtils.isEmpty(valueNode.getData()) || !nameArray[nameArray.length - 1]
                         .equalsIgnoreCase(valueNode.getData().substring(1))) {
-                    addViolationWithMessage(ctx, node
-                            , I18nResources.getMessage("xml.naming.ColorNameRule.violation.msg", nameNode.getValue()));
+                    ViolationUtils.addViolationWithPrecisePosition(this, node, ctx,
+                            I18nResources.getMessage("xml.naming.ColorNameRule.violation.msg", nameNode.getValue()));
                 }
             } else {
-                addViolationWithMessage(ctx, node
-                        , I18nResources.getMessage("xml.naming.ColorNameRule.violation.msg", nameNode.getValue()));
+                ViolationUtils.addViolationWithPrecisePosition(this, node, ctx,
+                        I18nResources.getMessage("xml.naming.ColorNameRule.violation.msg", nameNode.getValue()));
+
             }
         }
 
